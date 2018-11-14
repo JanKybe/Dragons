@@ -1,16 +1,18 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import gameData from './store/frontend-modules/gameData'
+import playerData from './store/frontend-modules/playerData'
+import questData from './store/frontend-modules/questData'
+import shopData from './store/frontend-modules/shopData'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  state: {
+export const store = new Vuex.Store({
 
-  },
-  mutations: {
-
-  },
-  actions: {
-
-  }
+    modules: [
+        gameData,
+        playerData,
+        questData,
+        shopData
+    ],
 })
