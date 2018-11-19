@@ -1,18 +1,26 @@
 <template>
-    <div class="quest-content h-100 w-100">
+        <transition-group
+                class="quest-content"
+                mode="out-in"
 
-        <div v-for="item in questData">
-            <QuestItem
-                v-bind:quest-data="item">
+                appear
+                appear-active-class="animated fadeIn"
+
+                enter-active-class="animated fadeIn"
+                leave-active-class="animated fadeOut">
+
+            <QuestItem v-for="item in questData"
+                       v-bind:quest-data="item"
+                       :key="item.adId">
             </QuestItem>
-        </div>
-    </div>
+
+        </transition-group>
 </template>
 
 <script>
 
     import QuestItem from '@/components/frontend/quest-components/quest-item'
-    import { mapGetters } from 'vuex'
+    import {mapGetters} from 'vuex'
 
 
     export default {
@@ -30,6 +38,11 @@
 </script>
 
 <style scoped>
+
+    .test {
+        visibility: hidden;
+    }
+
     .quest-content {
         display: grid;
         grid-template-columns: repeat(5, auto);

@@ -1,47 +1,46 @@
 <template>
-    <div class="quest-item h-100 w-100">
-        <b-card no-body class="quest-card text-center h-100 w-100">
+        <div class="quest-item">
 
-            <QuestStats
-                v-bind:probability="questData.probability"
-                v-bind:reward="questData.reward">
+            <b-card no-body class="quest-card text-center">
 
-            </QuestStats>
+                <QuestStats
+                        v-bind:probability="questData.probability"
+                        v-bind:reward="questData.reward">
 
-            <div class="quest-message">
-                {{ questData.message }}
-            </div>
-            <div class="quest-start" v-on:click="startQuest(questData.adId)">
-                Start Quest >
-                <!--<button v-on:click="startQuest(questData.adId)" class="btn-start">Start Quest</button>-->
-            </div>
+                </QuestStats>
 
-        </b-card>
-    </div>
+                <div class="quest-message">
+                    {{ questData.message }}
+                </div>
+                <div class="quest-start" v-on:click="startQuest(questData.adId)">
+                    Start Quest >
+                </div>
+
+            </b-card>
+        </div>
 </template>
 
 <script>
 
     import QuestStats from '@/components/frontend/quest-components/quest-item-stats'
 
-    import { mapActions } from 'vuex'
+    import {mapActions} from 'vuex'
 
     export default {
         name: 'quest-item',
         props: ['questData'],
 
         components: {
-          QuestStats
+            QuestStats
         },
 
         methods: {
             ...mapActions([
-              'startQuest'
+                'startQuest'
             ]),
 
 
-            startQuest: function(adId) {
-
+            startQuest: function (adId) {
                 this.$store.dispatch('startQuest', adId);
             },
         }
@@ -49,6 +48,7 @@
 </script>
 
 <style scoped>
+
     .quest-card {
         background-color: #f8f9fa;
         color: black;
@@ -74,13 +74,4 @@
         background-color: #2c2c2c;
         color: whitesmoke;
     }
-
-    .btn-start {
-        color: black;
-        border: 1px solid black;
-        background-color: white;
-        padding: 0.5em;
-        border-radius: 0.25rem;
-    }
-
 </style>

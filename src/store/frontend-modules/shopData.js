@@ -49,6 +49,7 @@ export default {
                 switch(data[item].id){
 
                     case 'hpot':
+                        
                         data[item].message = "This item gives you one extra healt.";
                         break;
 
@@ -69,7 +70,6 @@ export default {
 
                     case "tricks":
 
-
                         data[item].message = "This book contains some tricks, made by Mugloar witch!"
                         break;
 
@@ -85,11 +85,10 @@ export default {
                         break;
 
                     case "iron":
-
                         data[item].message = "This plating protects your organs and will even protect you against your wife."
+                        break;
 
                     case "mtrix":
-
                         data[item].message = "This book has every trick Mugloar has to offer."
                         break;
 
@@ -105,8 +104,6 @@ export default {
                 }
 
             }
-
-            console.log(data);
 
             commit('setShopData', data);
             dispatch('getRecommendedItem');
