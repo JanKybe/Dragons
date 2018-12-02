@@ -2,19 +2,12 @@ export default {
 
     state: {
         shopData: {},
-        recommendedItem: {},
-
-        rudolfData: {
-            gold: 250,
-            score: 0,
-            text: 'Welcome to my shop!'
-        }
+        healingPotion: {}
     },
 
     getters: {
         shopData: state => state.shopData,
-        recommendedItem: state => state.recommendedItem,
-        rudolfData: state => state.rudolfData
+        healingPotion: state => state.healingPotion
     },
 
     mutations: {
@@ -22,8 +15,8 @@ export default {
             state.shopData = payload;
         },
 
-        setRecItem (state, payload ){
-            state.recommendedItem = payload;
+        setHealingPotion (state, payload){
+            state.healingPotion = payload;
         }
 
     },
@@ -44,14 +37,12 @@ export default {
                     return response.json();
                 })
 
+            commit('setHealingPotion', data[0]);
+            data.splice(0, 1);    
+
             for ( let item in data ) {
 
                 switch(data[item].id){
-
-                    case 'hpot':
-                        
-                        data[item].message = "This item gives you one extra healt.";
-                        break;
 
                     case "gas":
 
@@ -104,9 +95,7 @@ export default {
                 }
 
             }
-
             commit('setShopData', data);
-            dispatch('getRecommendedItem');
         },
 
 
@@ -125,33 +114,6 @@ export default {
                 })
 
             commit('updatePlayerData', data);
-
-        },
-
-        getRecommendedItem({ commit, state, rootGetters }){
-
-            let shopItems = state.shopData;
-
-            if ( rootGetters.playerData.lives < 3 ){
-                commit('setRecItem', shopItems[0]);
-
-                shopItems.splice(0, 1);
-                commit('setShopData', shopItems);
-
-            } else if ( rootGetters.playerData.level < 5 ) {
-
-                commit('setRecItem', shopItems[1])
-
-                shopItems.splice(1, 1);
-                commit('setShopData', shopItems);
-            } else {
-
-                commit('setRecItem', shopItems[6])
-
-                shopItems.splice(6, 1);
-                commit('setShopData', shopItems);
-
-            }
 
         }
     }

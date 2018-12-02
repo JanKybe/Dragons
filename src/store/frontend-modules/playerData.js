@@ -2,7 +2,13 @@ export default {
 
     state: {
         playerData: {},
-        repData: {}
+        repData: {},
+        playerHistory: {
+            items_bought: 0,
+            gold_spent: 0,
+            quest_won: 0,
+            quest_lost: 0
+        }
     },
 
     getters: {

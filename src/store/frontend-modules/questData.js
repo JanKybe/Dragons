@@ -57,9 +57,11 @@ export default {
 
                 .then(response => {
                     return response.json();
+                }).catch(function(){
+                    console.log("Glitch in Martix");
                 })
 
-            commit('updatePlayerData', data);
+            commit('updatePlayerData', data);  
         }
 
     }

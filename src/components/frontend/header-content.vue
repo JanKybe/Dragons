@@ -1,6 +1,8 @@
 <template>
     <div class="header-content">
-        <h4>Dragons of Mugloar</h4>
+        <b-img
+            src="https://i.imgur.com/IpnZ0Rh.png" fluid alt="Logo" />
+        <a href="/"> Dragons of Mugloar </a>
     </div>
 
 </template>
@@ -8,9 +10,20 @@
 <style scoped>
     .header-content {
         display: flex;
-        background-color: #2c2c2c;
+        background-color: #2b2b2b;
         color: white;
         align-items: center;
-        padding-left: 2em;
+        font-size: 1.5em;
+        text-transform: uppercase;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: purple;
     }
 </style>

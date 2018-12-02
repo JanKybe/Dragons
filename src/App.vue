@@ -5,10 +5,10 @@
 </template>
 
 <style>
-    @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+    @import url('https://fonts.googleapis.com/css?family=Roboto');
 
     #app {
-        font-family: 'Josefin Sans', sans-serif;
+        font-family: 'Roboto', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-align: center;

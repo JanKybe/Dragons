@@ -1,6 +1,6 @@
 <template>
     <b-list-group class="quest-item-stats" flush>
-        <b-list-group-item v-bind:class="difficulty_level">{{ probability }}</b-list-group-item>
+        <b-list-group-item class="card-header">{{ probability }}</b-list-group-item>
         <b-list-group-item>
             <div class="row">
                 <div class="col">
@@ -8,7 +8,7 @@
                 </div>
 
                 <div class="col">
-                    <b-badge variant="light">{{ recommended_level_text }}</b-badge>
+                    <b-badge variant="light">{{ recommended_level }}</b-badge>
                 </div>
             </div>
         </b-list-group-item>
@@ -25,8 +25,7 @@
         data: function () {
             return {
                 difficulty_level: '',
-                recommended_level: '',
-                recommended_level_text: ''
+                recommended_level: ''
             }
         },
 
@@ -55,51 +54,26 @@
                 switch (this.probability) {
                     case "Walk in the park":
                     case "Piece of cake":
-                        this.difficulty_level = 'easy';
-                        this.recommended_level = 'easy';
-                        this.recommended_level_text = 'Level: 0 - 3';
-
-                        break;
-
                     case "Quite likely":
                     case "Sure thing":
-                    case "Hmmm....":
-                        this.difficulty_level = 'normal';
-                        this.recommended_level_text = 'Level: 3 - 5';
-
-                        if ( this.playerData.level === 2 ){
-                            this.recommended_level = 'normal'
-                        } else if ( this.playerData.level < 3 ) {
-                            this.recommended_level = 'very-hard'
-                        }
-
+                        this.difficulty_level = 'easy';
+                        this.recommended_level = 'Level: 0 - 5';
                         break;
 
                     case "Playing with fire":
+                    case "Hmmm....":
                     case "Gamble":
                     case "Rather detrimental":
-                        this.recommended_level_text = 'Level: 5 - 7';
-                        this.difficulty_level = 'hard';
-
-                        if ( this.playerData.level === 4 ){
-                            this.recommended_level = 'normal'
-                        } else if ( this.playerData.level < 5 ) {
-                            this.recommended_level = 'very-hard'
-                        }
+                        this.recommended_level = 'Level: 5 - 7';
+                        this.difficulty_level = 'normal';
 
                         break;
 
                     case "Risky":
                     case "Suicide mission":
                     case "Impossible":
-                        this.recommended_level_text = 'Level: 7 >';
-                        this.difficulty_level = 'very-hard';
-
-                        if ( this.playerData.level === 6 ){
-                            this.recommended_level = 'normal'
-                        } else if ( this.playerData.level < 7 ) {
-                            this.recommended_level = 'very-hard'
-                        }
+                        this.recommended_level = 'Level: 7 >';
+                        this.difficulty_level = 'hard';
 
                         break;
                 }
@@ -116,32 +90,39 @@
 <style scoped>
 
     .badge-light {
-        border: 1px solid #2c2c2c;
+        border: 1px solid #2b2b2b;
+        color: #2b2b2b;
     }
 
-    .test {
-        background-color: #2c2c2c;
+    .card-header {
+        background-image: url("https://i.imgur.com/j1JuKa6.jpg");
         color: whitesmoke;
+        text-transform: uppercase;
+        background-position: 13% 37%;
+        font-weight: 700;
     }
 
     .easy {
-        background-color: darkgreen;
+        background-image: url("https://i.imgur.com/En2ibyx.jpg");
+        background-position: 40% 60%;
         color: whitesmoke;
+        text-transform: uppercase;
+        font-weight: 700;
     }
 
     .normal {
-        background-color: #c78a07;
+        background-image: url("https://i.imgur.com/pZNdRyW.jpg");
+        background-position: 30% 40%;
         color: whitesmoke;
+        text-transform: uppercase;
+        font-weight: 700;
     }
 
     .hard {
-        background-color: darkslateblue;
+        background-image: url("https://i.imgur.com/R4ClxDG.jpg");
         color: whitesmoke;
-    }
-
-    .very-hard {
-        background-color: darkred;
-        color: whitesmoke;
+        text-transform: uppercase;
+        font-weight: 700;
     }
 
 </style>

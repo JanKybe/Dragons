@@ -1,20 +1,9 @@
 <template>
-        <transition-group
-                class="quest-content"
-                mode="out-in"
-
-                appear
-                appear-active-class="animated fadeIn"
-
-                enter-active-class="animated fadeIn"
-                leave-active-class="animated fadeOut">
-
-            <QuestItem v-for="item in questData"
-                       v-bind:quest-data="item"
-                       :key="item.adId">
-            </QuestItem>
-
-        </transition-group>
+    <div class="quest-content animated fadeIn">
+        <QuestItem v-for="item in questData"
+               v-bind:quest-data="item">
+        </QuestItem>
+    </div>
 </template>
 
 <script>
@@ -38,10 +27,6 @@
 </script>
 
 <style scoped>
-
-    .test {
-        visibility: hidden;
-    }
 
     .quest-content {
         display: grid;

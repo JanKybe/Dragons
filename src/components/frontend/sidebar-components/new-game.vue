@@ -2,32 +2,31 @@
     <div class="new-game">
         <div class="row">
             <div class="col">
-                <button class="sidebar-btn">New Game</button>
+                <button v-on:click="startGame()" class="sidebar-btn">New Game</button>
             </div>
 
             <div class="col">
 
-                <div v-if="currentPage">
-                    <button v-on:click="changePage()" class="sidebar-btn">Shop</button>
+                <div v-if="currentPage == 1">
+                    <button v-on:click="changePage(2)" class="sidebar-btn">Shop</button>
                 </div>
 
-                <div v-else>
-                    <button v-on:click="changePage()" class="sidebar-btn">Quests</button>
+                <div v-if="currentPage == 2">
+                    <button v-on:click="changePage(1)" class="sidebar-btn">Quests</button>
                 </div>
             </div>
-
         </div>
     </div>
 </template>
 
 <script>
 
-    import {mapGetters, mapMutations } from 'vuex'
+    import { mapGetters, mapMutations, mapActions } from 'vuex'
 
     export default {
 
         name: 'new-game',
-
+        
         computed: {
             ...mapGetters([
                 'currentPage'
@@ -39,8 +38,17 @@
                 'setCurrentPage'
             ]),
 
-            changePage: function(){
-                this.$store.commit('setCurrentPage', !this.currentPage);
+            ...mapActions([
+                'startGame'
+            ]),
+
+            startGame: async function () {
+                await this.$store.dispatch('startGame');
+            },
+
+            changePage: function(page_number){
+                console.log(page_number);
+                this.$store.commit('setCurrentPage', page_number);
             }
         }
     }

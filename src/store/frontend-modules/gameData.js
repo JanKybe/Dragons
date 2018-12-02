@@ -1,7 +1,8 @@
 export default {
 
     state: {
-        currentPage: true // true: Quests, false: Shop
+        // 1 = Quest Page, 2 = Shop Page, 3 = Gameover page
+        currentPage: 1
     },
 
     getters: {
@@ -16,22 +17,28 @@ export default {
 
     actions: {
 
-        async startGame({ dispatch }){
+        async startGame({ dispatch, commit }){
 
             await dispatch('getPlayerData');
 
             dispatch('getRepData');
             dispatch('getQuests');
             dispatch('getShopData');
+
+            commit('setCurrentPage', 1);
         },
 
-        async startQuest({ dispatch }, adId){
+        async startQuest({ dispatch, commit, rootGetters }, adId){
 
             await dispatch('solveQuest', adId);
 
-            dispatch('getQuests');
-            dispatch('getRepData');
-            dispatch('getShopData');
+            if ( rootGetters.playerData.lives < 1 ){
+                commit('setCurrentPage', 3);
+            } else {
+                dispatch('getQuests');
+                dispatch('getRepData');
+                dispatch('getShopData');
+            }
         },
 
         async buyItem({ dispatch }, itemId){
@@ -39,7 +46,6 @@ export default {
             await dispatch('getItem', itemId);
             
             dispatch('getShopData');
-            dispatch('getRecommendedItem');
 
         },
 

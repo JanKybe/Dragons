@@ -3,7 +3,17 @@
 
         <div class="player-stats-content">
             <b-card no-body class="player-stats-card">
-                Lives: {{ playerData.lives }}
+                <div class="card-lives">
+                    <div class="row">
+                        <div class="col-8">
+                            Lives: {{ playerData.lives }}
+                        </div>
+
+                        <div class="col-4 buy-life">
+                            <b-badge href="#" variant="danger">Buy Life</b-badge>
+                        </div>
+                    </div>
+                </div>
             </b-card>
 
             <b-card no-body class="player-stats-card">
@@ -32,7 +42,8 @@
         name: "player-stats",
         computed: {
             ...mapGetters([
-                'playerData'
+                'playerData',
+                'healingPotion'
             ])
         }
     }
@@ -52,5 +63,9 @@
         margin-bottom: 0.3em;
         text-align: left !important;
         font-size: 0.9em;
+    }
+
+    .buy-life {
+        text-align: center;
     }
 </style>

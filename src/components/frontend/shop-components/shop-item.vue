@@ -1,20 +1,16 @@
 <template>
 
     <div class="shop-item">
-        <b-card no-body class="shop-card"
-
-                v-bind:header="name">
-
+        <b-card no-body v-bind:header="name">
             <b-list-group flush>
-
                 <b-list-group-item>
                     <div class="row">
                         <div class="col">
-                            <b-badge variant="warning">Cost: {{ cost }} </b-badge>
+                            <b-badge variant="light">Cost: {{ cost }} </b-badge>
                         </div>
 
                         <div class="col">
-                            <b-badge variant="info">{{ id }} </b-badge>
+                            <b-badge variant="light">{{ levelBadge(cost) }} </b-badge>
                         </div>
                     </div>
                 </b-list-group-item>
@@ -54,21 +50,43 @@
                 this.$store.dispatch('buyItem', id);
             },
 
+            levelBadge: function(cost){
+                switch(cost){
+                    case 100: {
+                        return 'Level + 1'
+                        break;
+                    }
 
+                    case 300: {
+                        return 'Level + 2'
+                        break;
+                    }
+                }
+            }
         }
     }
 </script>
 
 <style scoped>
-    .shop-card {
+    .shop-message {
+        height: 6em;
+        padding: 1em;
+        font-size: 0.95em;
         background-color: #f8f9fa;
         color: black;
     }
 
-    .shop-message {
-        height: 4em;
-        margin: 1em;
-        font-size: 0.95em;
+    .badge-light {
+        border: 1px solid #2b2b2b;
+        color: #2b2b2b;
+    }
+
+    .card-header {
+        background-image: url("https://i.imgur.com/j1JuKa6.jpg");
+        color: whitesmoke;
+        text-transform: uppercase;
+        background-position: 13% 37%;
+        font-weight: 700;
     }
 
     .btn-buy {

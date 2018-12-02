@@ -1,12 +1,16 @@
 <template>
     <div class="game-content">
 
-        <div v-if="currentPage">
+        <div v-if="currentPage == 1">
             <Quests/>
         </div>
 
-        <div v-else>
+        <div v-if="currentPage == 2">
             <Shop/>
+        </div>
+
+        <div v-if="currentPage == 3">
+            Gameover State
         </div>
     </div>
 </template>
