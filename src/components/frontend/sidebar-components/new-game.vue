@@ -60,6 +60,10 @@
         padding: 1em;
     }
 
+    .sidebar-btn:focus {
+        outline: 0;
+    }
+
     .sidebar-btn {
         width: 100%;
         background-color: #f2f2f2;

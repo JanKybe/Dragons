@@ -24,7 +24,7 @@
 
     import QuestStats from '@/components/frontend/quest-components/quest-item-stats'
 
-    import {mapActions} from 'vuex'
+    import {mapActions, mapGetters} from 'vuex'
 
     export default {
         name: 'quest-item',
@@ -40,9 +40,21 @@
             ]),
 
 
-            startQuest: function (adId) {
-                this.$store.dispatch('startQuest', adId);
+            startQuest: async function (adId) {
+                await this.$store.dispatch('startQuest', adId);
+
+                this.$toasted.show(this.curQuestData.message, {
+                    theme: "toasted-primary",
+                    position: "bottom-right",
+                    duration: 2000
+                });
             },
+        },
+
+        computed: {
+            ...mapGetters({
+                curQuestData: 'curQuestData'
+            })
         }
     }
 </script>

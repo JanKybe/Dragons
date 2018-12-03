@@ -1,17 +1,20 @@
 export default {
 
     state: {
-        // 1 = Quest Page, 2 = Shop Page, 3 = Gameover page
-        currentPage: 1
+
+        gameData: {
+            currentGame: '',
+            currentPage: 1 // 1 = Quest Page, 2 = Shop Page, 3 = Gameover page
+        }
     },
 
     getters: {
-        currentPage: state => state.currentPage
+        currentPage: state => state.gameData.currentPage
     },
 
     mutations: {
         setCurrentPage (state, payload) {
-            state.currentPage = payload;
+            state.gameData.currentPage = payload;
         }
     },
 

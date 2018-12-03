@@ -102,27 +102,4 @@
         font-weight: 700;
     }
 
-    .easy {
-        background-image: url("https://i.imgur.com/En2ibyx.jpg");
-        background-position: 40% 60%;
-        color: whitesmoke;
-        text-transform: uppercase;
-        font-weight: 700;
-    }
-
-    .normal {
-        background-image: url("https://i.imgur.com/pZNdRyW.jpg");
-        background-position: 30% 40%;
-        color: whitesmoke;
-        text-transform: uppercase;
-        font-weight: 700;
-    }
-
-    .hard {
-        background-image: url("https://i.imgur.com/R4ClxDG.jpg");
-        color: whitesmoke;
-        text-transform: uppercase;
-        font-weight: 700;
-    }
-
 </style>

@@ -1,16 +1,23 @@
 export default {
 
     state: {
-        questData: {}
+        questData: {},
+        curQuestData: {}
     },
 
     getters: {
-        questData: state => state.questData
+        questData: state => state.questData,
+        curQuestData: state => state.curQuestData
     },
 
     mutations: {
         setQuestData(state, payload) {
             state.questData = payload;
+        },
+
+        setCurQuestData(state, payload) {
+            state.curQuestData = payload.success,
+            state.curQuestData = payload.message
         }
     },
 
@@ -61,7 +68,8 @@ export default {
                     console.log("Glitch in Martix");
                 })
 
-            commit('updatePlayerData', data);  
+            commit('updatePlayerData', data);
+            commit('setCurQuestData', data);  
         }
 
     }
