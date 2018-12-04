@@ -1,7 +1,7 @@
 <template>
     <div class="card-backend">
         <b-card title="Back-end"
-            img-src="http://46.101.191.134:8080/backend.png"
+            img-src="http://46.101.191.134:8080/backend3.png"
             img-alt="Image"
             img-top
             tag="article"
@@ -9,10 +9,38 @@
             class="float-right">
 
             <p class="card-text">
-                Start game and try to beat the game with computer and be the greatest Knight in Mugloar.
+                The Kingdom of Mugloar needs more dragon trainers! Be the greatest dragon trainer with computer help!
             </p>
 
-            <b-button href="/backend" variant="primary">Start Game</b-button>
+            <a href="/backend">
+                <button class="backend-btn">Start Game</button>
+            </a>
+
         </b-card>
     </div>
 </template>
+
+<style scoped>
+    .backend-btn:focus {
+        outline: 0;
+    }
+
+    a, a:hover {
+        text-decoration: none;
+        color: #2b2b2b;
+    }
+
+    .backend-btn {
+        width: 100%;
+        background-color: #f2f2f2;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        cursor: pointer;
+        border-radius: 0.25rem;
+        padding: 1em;
+    }
+
+    .backend-btn:hover {
+        background-color: white;
+    }
+
+</style>

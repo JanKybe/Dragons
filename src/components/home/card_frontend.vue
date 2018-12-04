@@ -1,7 +1,7 @@
 <template>
     <div class="front-end">
         <b-card title="Front-end"
-            img-src="http://46.101.191.134:8080/frontend.png"
+            img-src="http://46.101.191.134:8080/frontend3.png"
             img-alt="Image"
             img-top
             tag="article"
@@ -9,10 +9,37 @@
             class="float-left">
 
             <p class="card-text">
-                Start game and try to beat the game by yourself and be the greatest Knight in Mugloar.
+                The Kingdom of Mugloar needs more dragon trainers! Be the greatest dragon trainer by yourself!
             </p>
 
-            <b-button href="/frontend" variant="success">Start Game</b-button>
+            <a href="/frontend">
+                <button class="frontend-btn">Start Game</button>
+            </a>
         </b-card>
     </div>
 </template>
+
+<style scoped>
+    .frontend-btn:focus {
+        outline: 0;
+    }
+
+    a, a:hover {
+        text-decoration: none;
+        color: #2b2b2b;
+    }
+
+    .frontend-btn {
+        width: 100%;
+        background-color: #f2f2f2;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        cursor: pointer;
+        border-radius: 0.25rem;
+        padding: 1em;
+    }
+
+    .frontend-btn:hover {
+        background-color: white;
+    }
+
+</style>
