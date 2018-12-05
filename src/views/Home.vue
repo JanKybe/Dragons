@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home animated fadeIn">
     <div class="home-title">
       <h1>Dragons of Mugloar</h1>
     </div>

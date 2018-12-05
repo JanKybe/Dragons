@@ -42,12 +42,6 @@
 
             startQuest: async function (adId) {
                 await this.$store.dispatch('startQuest', adId);
-
-                this.$toasted.show(this.curQuestData.message, {
-                    theme: "toasted-primary",
-                    position: "bottom-right",
-                    duration: 2000
-                });
             },
         },
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="new-game">
+    <div class="new-game" v-if="currentGame">
         <div class="row">
             <div class="col">
                 <button v-on:click="startGame()" class="sidebar-btn">New Game</button>
@@ -17,6 +17,18 @@
             </div>
         </div>
     </div>
+
+    <div class="new-game" v-else>
+        <div class="row">
+            <div class="col">
+                <button v-on:click="" class="sidebar-btn">New Game</button>
+            </div>
+
+            <div class="col">
+                <button v-on:click="" class="sidebar-btn">Start Turn</button>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -28,9 +40,10 @@
         name: 'new-game',
         
         computed: {
-            ...mapGetters([
-                'currentPage'
-            ])
+            ...mapGetters({
+                currentPage: 'currentPage',
+                currentGame: 'currentGame'
+            })
         },
 
         methods: {

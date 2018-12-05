@@ -1,7 +1,7 @@
 <template>
-    <div class="header-content">
+    <div class="header-content" v-if="currentGame">
         <b-img
-            src="https://i.imgur.com/IpnZ0Rh.png" fluid alt="Logo" />
+            src="assets/f_logo.png" fluid alt="Logo" />
         <a href="/"> Dragons of Mugloar </a>
 
         <div class="notification">
@@ -9,7 +9,30 @@
         </div>
     </div>
 
+    <div class="header-content" v-else>
+        <b-img
+            src="assets/b_logo.png" fluid alt="Logo" />
+        <a href="/"> Dragons of Mugloar </a>
+    </div>
+
 </template>
+
+<script>
+
+    import { mapGetters } from 'vuex'
+
+    export default {
+
+        name: 'header-content',
+
+        computed: {
+            ...mapGetters({
+                currentGame: 'currentGame'
+            })
+        }
+    }
+
+</script>
 
 <style scoped>
     .header-content {

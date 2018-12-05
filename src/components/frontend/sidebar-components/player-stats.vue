@@ -1,5 +1,5 @@
 <template>
-    <div class="player-stats">
+    <div class="player-stats" v-if="currentGame">
 
         <div class="player-stats-content">
             <b-card no-body class="player-stats-card">
@@ -33,6 +33,30 @@
             </b-card>
         </div>
     </div>
+
+    <div class="player-stats" v-else>
+        <div class="player-stats-content">
+            <b-card no-body class="player-stats-card">
+                Lives: {{ b_playerData.lives }}
+            </b-card>
+
+            <b-card no-body class="player-stats-card">
+                Gold: {{ b_playerData.gold }}
+            </b-card>
+
+            <b-card no-body class="player-stats-card">
+                Level: {{ b_playerData.level }}
+            </b-card>
+
+            <b-card no-body class="player-stats-card">
+                Score: {{ b_playerData.score }}
+            </b-card>
+
+            <b-card no-body class="player-stats-card">
+                Turn: {{ b_playerData.turn }}
+            </b-card>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -41,10 +65,12 @@
     export default {
         name: "player-stats",
         computed: {
-            ...mapGetters([
-                'playerData',
-                'healingPotion'
-            ])
+            ...mapGetters({
+                playerData: 'playerData',
+                healingPotion: 'healingPotion',
+                currentGame: 'currentGame',
+                b_playerData: 'b_playerData'
+            })
         }
     }
 </script>

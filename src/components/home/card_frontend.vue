@@ -1,7 +1,7 @@
 <template>
     <div class="front-end">
         <b-card title="Front-end"
-            img-src="http://46.101.191.134:8080/frontend3.png"
+            img-src="assets/f_card.png"
             img-alt="Image"
             img-top
             tag="article"

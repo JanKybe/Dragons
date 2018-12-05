@@ -33,19 +33,32 @@ def startTurn(request, gameid):
         )
 
 def startGame(request):
-    data = requests.post("https://www.dragonsofmugloar.com/api/v2/game/start")
-    data = data.json()
 
-    startGame = playerData(
-        gameid = data['gameId'],
-        lives = data['lives'],
-        gold = data['gold'],
-        level = data['level'],
-        score = data['score'],
-        highScore = data['highScore'],
-        turn = data['turn']
-    )
+    if request.method == 'POST':
+        data = requests.post("https://www.dragonsofmugloar.com/api/v2/game/start")
+        data = data.json()
 
-    startGame.save()
+        startGame = playerData(
+            gameid = data['gameId'],
+            lives = data['lives'],
+            gold = data['gold'],
+            level = data['level'],
+            score = data['score'],
+            highScore = data['highScore'],
+            turn = data['turn']
+        )
 
-    return JsonResponse(data)
+        startGame.save()
+
+        response = JsonResponse(data)
+        response["Access-Control-Allow-Origin"] = "*"
+        response["Access-Control-Allow-Methods"] = "POST"
+        response["Access-Control-Max-Age"] = "1000"
+        response["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
+
+        return response
+
+    else:
+        return JsonResponse({
+            "Error": "Coulnd't fetch game data"
+        })

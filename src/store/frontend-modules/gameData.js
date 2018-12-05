@@ -3,18 +3,23 @@ export default {
     state: {
 
         gameData: {
-            currentGame: '',
+            currentGame: true, // true = frontend, false = backend
             currentPage: 1 // 1 = Quest Page, 2 = Shop Page, 3 = Gameover page
         }
     },
 
     getters: {
-        currentPage: state => state.gameData.currentPage
+        currentPage: state => state.gameData.currentPage,
+        currentGame: state => state.gameData.currentGame
     },
 
     mutations: {
         setCurrentPage (state, payload) {
             state.gameData.currentPage = payload;
+        },
+
+        setCurrentGame(state, payload){
+            state.gameData.currentGame = payload;
         }
     },
 

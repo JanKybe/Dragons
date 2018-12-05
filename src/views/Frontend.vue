@@ -1,5 +1,5 @@
 <template>
-    <div class="frontend">
+    <div class="frontend animated fadeIn">
         <Header/>
 
         <div class="frontend-content">
@@ -17,7 +17,7 @@
     import Game from '@/components/frontend/game-content'
 
 
-    import {mapActions} from 'vuex'
+    import { mapActions, mapMutations } from 'vuex'
 
     export default {
         name: 'Frontend',
@@ -27,8 +27,13 @@
                 'startGame'
             ]),
 
+            ...mapMutations({
+                setCurrentGame: 'setCurrentGame'
+            }),
+
             startGame: async function () {
                 await this.$store.dispatch('startGame');
+                this.$store.commit('setCurrentGame', true)
             }
         },
 
