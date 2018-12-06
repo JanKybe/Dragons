@@ -1,7 +1,8 @@
 <template>
-    <div class="quest-content animated fadeIn">
+    <div class="quest-content animated fadeIn" v-if="currentPage">
         <QuestItem v-for="item in questData"
-               v-bind:quest-data="item">
+               v-bind:quest-data="item"
+               v-bind:key="item.adId">
         </QuestItem>
     </div>
 </template>
@@ -19,9 +20,10 @@
         },
 
         computed: {
-            ...mapGetters([
-                'questData'
-            ])
+            ...mapGetters({
+                questData: 'questData',
+                currentPage: 'currentPage'
+            })
         }
     }
 </script>

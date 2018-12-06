@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import gameData from './store/frontend-modules/gameData'
-import playerData from './store/frontend-modules/playerData'
-import questData from './store/frontend-modules/questData'
-import shopData from './store/frontend-modules/shopData'
-import backendData from './store/frontend-modules/backendData'
+import gameData from './store/gameData'
+import playerData from './store/playerData'
+import questData from './store/questData'
+import shopData from './store/shopData'
+import backendData from './store/backendData'
 
 Vue.use(Vuex)
 

@@ -9,8 +9,8 @@
                             Lives: {{ playerData.lives }}
                         </div>
 
-                        <div class="col-4 buy-life">
-                            <b-badge href="#" variant="danger">Buy Life</b-badge>
+                        <div class="col-4 buy-life" v-if="playerData.lives > 0">
+                            <b-badge v-on:click="buyHealth()" href="#" variant="danger">Buy Life</b-badge>
                         </div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
 
     export default {
         name: "player-stats",
@@ -71,6 +71,16 @@
                 currentGame: 'currentGame',
                 b_playerData: 'b_playerData'
             })
+        },
+
+        methods: {
+            ...mapActions({
+                buyItem: 'buyItem'
+            }),
+
+            buyHealth: function(){
+                this.$store.dispatch('buyItem', {id:'hpot', cost:50});
+            },
         }
     }
 </script>

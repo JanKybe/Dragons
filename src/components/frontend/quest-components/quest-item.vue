@@ -12,7 +12,7 @@
                 <div class="quest-message">
                     {{ questData.message }}
                 </div>
-                <div class="quest-start" v-on:click="startQuest(questData.adId)">
+                <div class="quest-start" v-on:click="startQuest({adId: questData.adId, reward: questData.reward})">
                     Start Quest >
                 </div>
 
@@ -35,20 +35,13 @@
         },
 
         methods: {
-            ...mapActions([
-                'startQuest'
-            ]),
+            ...mapActions({
+               startQuest: 'startQuest' 
+            }),
 
-
-            startQuest: async function (adId) {
-                await this.$store.dispatch('startQuest', adId);
+            startQuest: async function (data) {
+                await this.$store.dispatch('startQuest', data);
             },
-        },
-
-        computed: {
-            ...mapGetters({
-                curQuestData: 'curQuestData'
-            })
         }
     }
 </script>

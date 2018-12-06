@@ -1,5 +1,4 @@
 <template>
-
     <div class="shop-item">
         <b-card no-body v-bind:header="name">
             <b-list-group flush>
@@ -20,7 +19,7 @@
                 {{ message }}
             </div>
 
-            <div class="btn-buy" v-on:click="buyItem(id)">Buy Item</div>
+            <div class="btn-buy" v-on:click="buyItem({id: id, cost: cost})">Buy Item</div>
 
         </b-card>
     </div>
@@ -46,8 +45,8 @@
             ]),
 
 
-            buyItem: function(id){
-                this.$store.dispatch('buyItem', id);
+            buyItem: function(data){
+                this.$store.dispatch('buyItem', data);
             },
 
             levelBadge: function(cost){

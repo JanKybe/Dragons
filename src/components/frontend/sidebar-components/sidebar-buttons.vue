@@ -7,12 +7,12 @@
 
             <div class="col" v-if="playerData.lives > 0">
 
-                <div v-if="currentPage == 1">
-                    <button v-on:click="changePage(2)" class="sidebar-btn">Shop</button>
+                <div v-if="currentPage">
+                    <button v-on:click="changePage()" class="sidebar-btn">Shop</button>
                 </div>
 
-                <div v-if="currentPage == 2">
-                    <button v-on:click="changePage(1)" class="sidebar-btn">Quests</button>
+                <div v-if="!currentPage">
+                    <button v-on:click="changePage()" class="sidebar-btn">Quests</button>
                 </div>
             </div>
         </div>
@@ -63,9 +63,8 @@
                 await this.$store.dispatch('startGame');
             },
 
-            changePage: function(page_number){
-                console.log(page_number);
-                this.$store.commit('setCurrentPage', page_number);
+            changePage: function(){
+                this.$store.commit('setCurrentPage', !this.currentPage);
             },
 
             b_startGame: async function () {

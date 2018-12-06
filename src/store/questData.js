@@ -1,23 +1,16 @@
 export default {
 
     state: {
-        questData: {},
-        curQuestData: {}
+        questData: {}
     },
 
     getters: {
-        questData: state => state.questData,
-        curQuestData: state => state.curQuestData
+        questData: state => state.questData
     },
 
     mutations: {
         setQuestData(state, payload) {
             state.questData = payload;
-        },
-
-        setCurQuestData(state, payload) {
-            state.curQuestData = payload.success,
-            state.curQuestData = payload.message
         }
     },
 
@@ -52,9 +45,9 @@ export default {
             commit('setQuestData', data);
         },
 
-        async solveQuest({commit, dispatch, rootGetters}, adId) {
+        async solveQuest({commit, dispatch, rootGetters}, q_data) {
 
-            const data = await window.fetch("https://www.dragonsofmugloar.com/api/v2/" + rootGetters.playerData.gameId + "/solve/" + adId, {
+            const data = await window.fetch("https://www.dragonsofmugloar.com/api/v2/" + rootGetters.playerData.gameId + "/solve/" + q_data.adId, {
                 method: "POST",
                 header: {
                     'Accept': 'application/json',
@@ -64,13 +57,34 @@ export default {
 
                 .then(response => {
                     return response.json();
-                }).catch(function(){
-                    console.log("Glitch in Martix");
                 })
 
-            commit('updatePlayerData', data);
-            commit('setCurQuestData', data);  
-        }
+            if ( data.lives == undefined){
+                console.log("Oh-noo")
+            } else {
+                commit('updatePlayerData', data);
+                commit('setPlayerAction', data.message);
 
+                let playerH = {}
+
+                if ( data.success ){
+                    playerH = {
+                        gold_won: rootGetters.playerHistory.gold_won + q_data.reward,
+                        gold_spent: rootGetters.playerHistory.gold_spent,
+                        quest_won: rootGetters.playerHistory.quest_won + 1,
+                        quest_lost: rootGetters.playerHistory.quest_lost,
+                    }
+                } else {
+                    playerH = {
+                        gold_won: rootGetters.playerHistory.gold_won,
+                        gold_spent: rootGetters.playerHistory.gold_spent,
+                        quest_won: rootGetters.playerHistory.quest_won,
+                        quest_lost: rootGetters.playerHistory.quest_lost + 1,
+                    }
+                }
+
+                commit('setPlayerHistory', playerH)  
+            }   
+        }
     }
 }

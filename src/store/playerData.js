@@ -4,16 +4,22 @@ export default {
         playerData: {},
         repData: {},
         playerHistory: {
-            items_bought: 0,
+            gold_won: 0,
             gold_spent: 0,
             quest_won: 0,
             quest_lost: 0
+        },
+
+        playerAction: {
+            message: 'Welcome, choose your action! We recommend you to do the quest in your level range.'
         }
     },
 
     getters: {
         playerData: state => state.playerData,
-        repData: state => state.repData
+        repData: state => state.repData,
+        playerHistory: state => state.playerHistory,
+        playerAction: state => state.playerAction
     },
 
 
@@ -40,6 +46,14 @@ export default {
 
         setRepData (state, payload){
             state.repData = payload;
+        },
+
+        setPlayerHistory (state, payload){
+            state.playerHistory = payload;
+        },
+
+        setPlayerAction (state, payload){
+            state.playerAction.message = payload;
         }
     },
 

@@ -4,7 +4,7 @@ export default {
 
         gameData: {
             currentGame: true, // true = frontend, false = backend
-            currentPage: 1 // 1 = Quest Page, 2 = Shop Page, 3 = Gameover page
+            currentPage: true, // true = quest, false = shop
         }
     },
 
@@ -36,22 +36,20 @@ export default {
             commit('setCurrentPage', 1);
         },
 
-        async startQuest({ dispatch, commit, rootGetters }, adId){
+        async startQuest({ dispatch, commit, rootGetters }, data){
+            await dispatch('solveQuest', data);
 
-            await dispatch('solveQuest', adId);
+            if ( rootGetters.playerData.lives > 0 ){
 
-            if ( rootGetters.playerData.lives < 1 ){
-                commit('setCurrentPage', 3);
-            } else {
                 dispatch('getQuests');
                 dispatch('getRepData');
                 dispatch('getShopData');
             }
         },
 
-        async buyItem({ dispatch }, itemId){
+        async buyItem({ dispatch }, itemId, cost){
 
-            await dispatch('getItem', itemId);
+            await dispatch('getItem', itemId, cost);
             
             dispatch('getShopData');
 

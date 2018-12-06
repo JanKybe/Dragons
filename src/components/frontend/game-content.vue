@@ -1,16 +1,13 @@
 <template>
     <div class="game-content" v-if="currentGame">
 
-        <div v-if="currentPage == 1">
+        <div v-if="playerData.lives > 0">
             <Quests/>
-        </div>
-
-        <div v-if="currentPage == 2">
             <Shop/>
         </div>
 
-        <div v-if="currentPage == 3">
-            Gameover State
+        <div v-else>
+            <gOver/>
         </div>
     </div>
 
@@ -24,6 +21,7 @@
     import Quests from '@/components/frontend/quest-components/quest-content'
     import Shop from '@/components/frontend/shop-components/shop-content'
     import bContent from '@/components/frontend/b-game-components/b-game-content'
+    import gOver from '@/components/frontend/gameover-content'
 
     import { mapGetters } from 'vuex'
 
@@ -34,14 +32,15 @@
         components: {
             Quests,
             Shop,
-            bContent
+            bContent,
+            gOver
         },
 
         computed: {
-
             ...mapGetters({
                 currentPage: 'currentPage',
-                currentGame: 'currentGame'
+                currentGame: 'currentGame',
+                playerData: 'playerData'
             })
         }
 

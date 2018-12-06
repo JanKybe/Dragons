@@ -1,5 +1,5 @@
 <template>
-    <div class="shop-content animated fadeIn">
+    <div class="shop-content animated fadeIn" v-if="!currentPage">
         <div class="shop-content-items">
             <div v-for="item in shopData">
                 <ShopItem
@@ -27,7 +27,8 @@
 
         computed: {
             ...mapGetters({
-                shopData: 'shopData'
+                shopData: 'shopData',
+                currentPage: 'currentPage'
             })
         }
     }

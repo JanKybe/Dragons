@@ -99,9 +99,9 @@ export default {
         },
 
 
-        async getItem({ commit, rootGetters }, itemId) {
+        async getItem({ commit, rootGetters }, i_data) {
 
-            const data = await window.fetch("https://www.dragonsofmugloar.com/api/v2/" + rootGetters.playerData.gameId + "/shop/buy/" + itemId, {
+            const data = await window.fetch("https://www.dragonsofmugloar.com/api/v2/" + rootGetters.playerData.gameId + "/shop/buy/" + i_data.id, {
                 method: "POST",
                 header: {
                     'Accept': 'application/json',
@@ -115,6 +115,24 @@ export default {
 
             commit('updatePlayerData', data);
 
+            let playerH = {}
+
+            if ( data.shoppingSuccess ){
+    
+                let playerH = {
+                    gold_won: rootGetters.playerHistory.gold_won,
+                    gold_spent: rootGetters.playerHistory.gold_spent + i_data.cost,
+                    quest_won: rootGetters.playerHistory.quest_won,
+                    quest_lost: rootGetters.playerHistory.quest_lost,
+                }
+
+                commit('setPlayerHistory', playerH)
+                commit('setPlayerAction', 'Successfully bought item!') 
+
+            } else {
+                commit('setPlayerAction', 'Not enought money to buy this item!') 
+
+            }
         }
     }
 }
