@@ -1,11 +1,11 @@
 <template>
-    <div class="new-game" v-if="currentGame">
+    <div class="sidebar-buttons" v-if="currentGame">
         <div class="row">
             <div class="col">
                 <button v-on:click="startGame()" class="sidebar-btn">New Game</button>
             </div>
 
-            <div class="col">
+            <div class="col" v-if="playerData.lives > 0">
 
                 <div v-if="currentPage == 1">
                     <button v-on:click="changePage(2)" class="sidebar-btn">Shop</button>
@@ -18,14 +18,14 @@
         </div>
     </div>
 
-    <div class="new-game" v-else>
+    <div class="sidebar-buttons" v-else>
         <div class="row">
             <div class="col">
-                <button v-on:click="" class="sidebar-btn">New Game</button>
+                <button v-on:click="b_startGame()" class="sidebar-btn">New Game</button>
             </div>
 
-            <div class="col">
-                <button v-on:click="" class="sidebar-btn">Start Turn</button>
+            <div class="col" v-if="b_playerData.lives > 0">
+                <button v-on:click="b_startTurn()" class="sidebar-btn">Start Turn</button>
             </div>
         </div>
     </div>
@@ -37,12 +37,14 @@
 
     export default {
 
-        name: 'new-game',
+        name: 'sidebar-buttons',
         
         computed: {
             ...mapGetters({
                 currentPage: 'currentPage',
-                currentGame: 'currentGame'
+                currentGame: 'currentGame',
+                b_playerData: 'b_playerData',
+                playerData: 'playerData'
             })
         },
 
@@ -51,9 +53,11 @@
                 'setCurrentPage'
             ]),
 
-            ...mapActions([
-                'startGame'
-            ]),
+            ...mapActions({
+                startGame: 'startGame',
+                b_startGame: 'b_startGame',
+                b_startTurn: 'b_startTurn'
+            }),
 
             startGame: async function () {
                 await this.$store.dispatch('startGame');
@@ -62,6 +66,14 @@
             changePage: function(page_number){
                 console.log(page_number);
                 this.$store.commit('setCurrentPage', page_number);
+            },
+
+            b_startGame: async function () {
+                await this.$store.dispatch('b_startGame');
+            },
+
+            b_startTurn: async function () {
+                await this.$store.dispatch('b_startTurn');
             }
         }
     }
@@ -69,7 +81,7 @@
 </script>
 
 <style scoped>
-    .new-game {
+    .sidebar-buttons {
         padding: 1em;
     }
 

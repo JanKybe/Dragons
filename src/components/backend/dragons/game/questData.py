@@ -31,9 +31,6 @@ class questData:
             return self.questData['very-hard'][0] 
 
     def solveQuest(self, gameid, questdata):
-        
-        print("starting Quest..")
-
         data = requests.post("https://www.dragonsofmugloar.com/api/v2/" + gameid + "/solve/" + questdata['adId'])
         data = data.json()
 
@@ -46,17 +43,20 @@ class questData:
         player.save()
 
         return {
-            'quest': questdata['message'],
+            'type': 'quest',
+            'success': data['success'],
             'message': data['message'],
-            'success': data['success']
+            'questData': {
+                'message': questdata['message'],
+                'reward': questdata['reward'],
+                'probability': questdata['probability']
+            }
         }
 
     def fetchQuestData(self, gameid):
 
         data = requests.get("https://www.dragonsofmugloar.com/api/v2/" + gameid + "/messages")
         data = data.json()
-
-        print("Data Fetched")
 
         for item in data:
 

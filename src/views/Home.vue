@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import CardBackend from '@/components/home/card_backend'
-import CardFrontend from '@/components/home/card_frontend'
+import CardBackend from '@/components/frontend/home-components/card_backend'
+import CardFrontend from '@/components/frontend/home-components/card_frontend'
 
 export default {
   name: 'home',

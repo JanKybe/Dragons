@@ -8,29 +8,48 @@ from .game.gameCore import gameCore
 
 def startTurn(request, gameid):
 
-    game = gameCore(gameid)
-    data = game.startTurn()
+    if request.method == 'GET':
 
-    player = playerData.objects.get(gameid=gameid)
+        if playerData.objects.filter(gameid=gameid).count() < 1:
+            return JsonResponse({
+                "Error": "Game doesn't exist."
+            })
 
-    if player.lives == 0:
-        return JsonResponse(
-            {
-                'data': 'Game over, start new game!'
-            }
-        )
-    else:  
-        return JsonResponse(
-            {
-                'data': data,
-                'lives': player.lives,
-                'gold': player.gold,
-                'level': player.level,
-                'score': player.score,
-                'turn': player.turn
-            }
-            
-        )
+        game = gameCore(gameid)
+        data = game.startTurn()
+
+        player = playerData.objects.get(gameid=gameid)
+
+        repData = requests.post("https://www.dragonsofmugloar.com/api/v2/" + player.gameid +"/investigate/reputation")
+        repData = repData.json()
+
+        response = JsonResponse({
+                'turnData': data,
+                'repData': repData,
+                'playerData': {
+                    'gameId': player.gameid,
+                    'lives': player.lives,
+                    'gold': player.gold,
+                    'level': player.level,
+                    'score': player.score,
+                    'turn': player.turn
+                }
+            })
+
+        response["Access-Control-Allow-Origin"] = "*"
+        response["Access-Control-Allow-Methods"] = "GET"
+        response["Access-Control-Max-Age"] = "1000"
+        response["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
+
+        if player.lives < 1:
+            player.delete()
+
+        return response
+
+    else:
+        return JsonResponse({
+            "Error": "Couldn't fetch game data"
+        })            
 
 def startGame(request):
 
@@ -60,5 +79,5 @@ def startGame(request):
 
     else:
         return JsonResponse({
-            "Error": "Coulnd't fetch game data"
+            "Error": "Couldn't fetch game data"
         })

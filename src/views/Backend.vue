@@ -4,6 +4,7 @@
 
         <div class="backend-content">
             <Sidebar/>
+            <Game/>
         </div>
 
     </div>
@@ -13,7 +14,7 @@
 <script>
     import Header from '@/components/frontend/header-content'
     import Sidebar from '@/components/frontend/sidebar-content'
-    //import Game from '@/components/frontend/game-content'
+    import Game from '@/components/frontend/game-content'
 
 
     import { mapMutations, mapActions } from 'vuex'
@@ -33,7 +34,8 @@
 
         components: {
             Header,
-            Sidebar
+            Sidebar,
+            Game
         },
 
         mounted() {

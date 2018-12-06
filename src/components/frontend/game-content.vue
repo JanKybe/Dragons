@@ -1,5 +1,5 @@
 <template>
-    <div class="game-content">
+    <div class="game-content" v-if="currentGame">
 
         <div v-if="currentPage == 1">
             <Quests/>
@@ -13,12 +13,17 @@
             Gameover State
         </div>
     </div>
+
+    <div class="game-content" v-else>
+        <bContent/>
+    </div>
 </template>
 
 <script>
 
     import Quests from '@/components/frontend/quest-components/quest-content'
     import Shop from '@/components/frontend/shop-components/shop-content'
+    import bContent from '@/components/frontend/b-game-components/b-game-content'
 
     import { mapGetters } from 'vuex'
 
@@ -28,13 +33,16 @@
 
         components: {
             Quests,
-            Shop
+            Shop,
+            bContent
         },
 
         computed: {
-            ...mapGetters([
-                'currentPage'
-            ])
+
+            ...mapGetters({
+                currentPage: 'currentPage',
+                currentGame: 'currentGame'
+            })
         }
 
     }

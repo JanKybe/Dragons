@@ -9,7 +9,7 @@
 
 <script>
 
-    import NewGame from '@/components/frontend/sidebar-components/new-game'
+    import NewGame from '@/components/frontend/sidebar-components/sidebar-buttons'
     import Stats from '@/components/frontend/sidebar-components/player-stats'
     import Reputation from '@/components/frontend/sidebar-components/player-reputation'
 
@@ -21,8 +21,6 @@
             Reputation,
             NewGame
         }
-
-
     }
 </script>
 

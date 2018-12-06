@@ -34,14 +34,20 @@ class gameCore:
 
         if self.player.lives < 3 and self.player.gold >= 50:
             data = self.shop.buyItem(self.gameid, shopItems['healingPotion'][0])
+            print (data)
+            return data
 
         elif self.player.gold >= 100 and self.player.level < 5:
             data = self.shop.buyItem(self.gameid, shopItems['firstItems'][0])
+            print (data)
+            return data
 
         elif self.player.gold >= 300 and self.player.level > 4:
-            data = self.shop.buyItem(self.gameid, shopItems['secondItems'][0])       
+            data = self.shop.buyItem(self.gameid, shopItems['secondItems'][0])
+            print (data)
+            return data       
 
         else:
              data = self.quests.solveQuest(self.gameid, self.quests.getQuestToSolve())
-              
-        return data
+             print (data)
+             return data

@@ -44,7 +44,9 @@ class shopData:
         player.save()
 
         return {
+            'type': "shop",
+            'success': data['shoppingSuccess'],
             'item': item['name'],
-            'success': data['shoppingSuccess']  
+            'cost': item['cost']
         }
                 
