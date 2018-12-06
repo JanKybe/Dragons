@@ -81,10 +81,10 @@
     }
 
     .card-header {
-        background-image: url("https://i.imgur.com/j1JuKa6.jpg");
+        background-image: url("/assets/f_header.png");
         color: whitesmoke;
         text-transform: uppercase;
-        background-position: 13% 37%;
+        background-position: 55% 45%;
         font-weight: 700;
     }
 

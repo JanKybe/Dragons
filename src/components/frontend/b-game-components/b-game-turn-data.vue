@@ -73,6 +73,10 @@
         margin-top: 1em;
     }
 
+    .card {
+        height: 15em;
+    }
+
     .turn-card {
         width: 30%;
         margin-right: 1em;

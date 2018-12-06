@@ -13,7 +13,6 @@
                 </div>
             </p>
         </b-card>
-
     </div>
 </template>
 
