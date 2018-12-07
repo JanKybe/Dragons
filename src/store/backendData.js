@@ -88,7 +88,7 @@ export default {
                     }
                 } else {
                     gameData = {
-                        'win': win,
+                        win,
                         lost,
                         'moneySpent': moneySpent + data.turnData.cost,
                         moneyWon
@@ -96,7 +96,7 @@ export default {
                 }
             } else if ( !data.turnData.success && data.turnData.type === 'quest' ) {
                 gameData = {
-                    'win': win,
+                    win,
                     'lost': lost + 1,
                     moneySpent,
                     moneyWon

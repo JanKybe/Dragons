@@ -2,7 +2,18 @@
     <div class="sidebar-content">
         <new-game/>
         <stats/>
-        <reputation/>
+
+        <div v-if="currentGame">
+            <reputation
+                :reputation="repData"
+            />
+        </div>
+        
+        <div v-else>
+            <reputation
+                :reputation="b_repData"
+            />
+        </div>
     </div>
 </template>
 
@@ -13,6 +24,8 @@
     import Stats from '@/components/frontend/sidebar-components/player-stats'
     import Reputation from '@/components/frontend/sidebar-components/player-reputation'
 
+    import { mapGetters } from 'vuex'
+
     export default {
 
         name: 'sidebar-content',
@@ -20,6 +33,14 @@
             Stats,
             Reputation,
             NewGame
+        },
+
+        computed: {
+            ...mapGetters({
+                repData: 'repData',
+                b_repData: 'b_repData',
+                currentGame: 'currentGame'
+            })
         }
     }
 </script>

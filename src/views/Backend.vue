@@ -1,10 +1,10 @@
 <template>
     <div class="backend animated fadeIn">
-        <Header/>
+        <header-content/>
 
         <div class="backend-content">
-            <Sidebar/>
-            <Game/>
+            <sidebar-content/>
+            <game-content/>
         </div>
 
     </div>
@@ -12,9 +12,9 @@
 
 
 <script>
-    import Header from '@/components/frontend/header-content'
-    import Sidebar from '@/components/frontend/sidebar-content'
-    import Game from '@/components/frontend/game-content'
+    import HeaderContent from '@/components/frontend/header-content'
+    import SidebarContent from '@/components/frontend/sidebar-content'
+    import GameContent from '@/components/frontend/game-content'
 
 
     import { mapMutations, mapActions } from 'vuex'
@@ -33,9 +33,9 @@
         },
 
         components: {
-            Header,
-            Sidebar,
-            Game
+            HeaderContent,
+            SidebarContent,
+            GameContent
         },
 
         mounted() {

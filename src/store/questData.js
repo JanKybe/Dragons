@@ -32,10 +32,10 @@ export default {
 
 
             data.forEach((quest) => {
-                if ( quest.hasOwnProperty('encrytped') && quest.encrypted === 1){
-                    data.message = atob(data[quest].message);
-                    data.adId = atob(data[quest].adId);
-                    data.probability = atob(data[quest].probability);
+                if ( quest.hasOwnProperty('encrypted') && quest.encrypted === 1){
+                    quest.message = atob(quest.message);
+                    quest.adId = atob(quest.adId);
+                    quest.probability = atob(quest.probability);
                 }
             }) 
 

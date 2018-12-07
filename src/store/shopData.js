@@ -30,7 +30,7 @@ export default {
                 .then(response => {
                     return response.json();
                 })
-                
+
             data.splice(0, 1); 
             
             data.forEach((item) => {
@@ -110,10 +110,7 @@ export default {
             if ( data.shoppingSuccess ){
 
                 let { gold_won, gold_spent, quest_won, quest_lost } = rootGetters.playerHistory
-
-                gold_spent + i_data.cost
-
-                const playerH = Object.assign({}, { gold_won, gold_spent, quest_won, quest_lost})
+                const playerH = Object.assign({}, { gold_won, gold_spent: gold_spent + i_data.cost, quest_won, quest_lost})
 
                 commit('setPlayerHistory', playerH)
                 commit('setPlayerAction', 'Successfully bought item!') 

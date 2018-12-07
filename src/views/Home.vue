@@ -5,8 +5,8 @@
     </div>
 
     <div class="home-content">
-      <CardBackend/>
-      <CardFrontend/>
+      <card-backend/>
+      <card-frontend/>
     </div>
   </div>
 </template>

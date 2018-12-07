@@ -1,19 +1,19 @@
 <template>
     <div class="frontend">
-        <Header/>
+        <header-content/>
 
         <div class="frontend-content">
-            <Sidebar/>
-            <Game/>
+            <sidebar-content/>
+            <game-content/>
         </div>
     </div>
 </template>
 
 
 <script>
-    import Header from '@/components/frontend/header-content'
-    import Sidebar from '@/components/frontend/sidebar-content'
-    import Game from '@/components/frontend/game-content'
+    import HeaderContent from '@/components/frontend/header-content'
+    import SidebarContent from '@/components/frontend/sidebar-content'
+    import GameContent from '@/components/frontend/game-content'
 
 
     import { mapActions, mapMutations } from 'vuex'
@@ -37,9 +37,9 @@
         },
 
         components: {
-            Header,
-            Sidebar,
-            Game
+            HeaderContent,
+            SidebarContent,
+            GameContent
         },
 
         mounted() {
