@@ -17,33 +17,37 @@ npm run build
 
 ## Django setup
 
-### Change Allowed Host IP
-###### Location: /src/components/backend/backend/settings.py
+### Installing Python 3
 ```
-ALLOWED_HOSTS = ['YOUR_IP']
+apt-get update
+apt-get install python3 
 ```
-
-### Making migrations and starting Django
+### Installing Pip3
 ```
-python manage.py makemigrations
+apt-get install python3-pip
 ```
-
+### Installing Virtualenv
 ```
-python manage.py migrate
+pip3 install virtualenv
 ```
-
+### Create virtual environment
 ```
-python manage.py runserver ...
-```
-
-### Changing Vuex module
-###### Location: /src/store/backendData.js
-```
-Line 44
-const data = await window.fetch("http://YOUR_IP/start_game", {
+cd src/components/backend
+virtualenv env
 ```
 
+### Activate virtual environment
 ```
-Line 61
-const data = await window.fetch("http://YOUR_IP/start_turn/" + state.b_playerData.gameId, {
+source env/bin/activate
+```
+
+### Install Django
+```
+pip3 install django
+pip3 install requests
+```
+
+### Start Django
+```
+python3 manage.py runserver localhost:8070
 ```

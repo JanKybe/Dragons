@@ -1,9 +1,9 @@
 <template>
     <div class="quest-content animated fadeIn" v-if="currentPage">
-        <QuestItem v-for="item in questData"
-               v-bind:quest-data="item"
-               v-bind:key="item.adId">
-        </QuestItem>
+        <quest-item v-for="item in questData"
+            :quest-data="item"
+            :key="item.adId">
+        </quest-item>
     </div>
 </template>
 
@@ -30,11 +30,34 @@
 
 <style scoped>
 
-    .quest-content {
-        display: grid;
-        grid-template-columns: repeat(5, auto);
-        grid-template-rows: repeat(2, auto);
-        grid-row-gap: 0.6em;
-        grid-column-gap: 0.6em;
+    @media (max-width: 767px) {
+        .quest-content {
+            display: grid;
+            grid-template-columns: 1;
+            grid-template-rows: auto;
+            grid-row-gap: 0.6em;
+            grid-column-gap: 0.6em;;
+            margin-bottom: 8em;
+        }
+    }
+
+    @media screen and (min-width: 768px ) and (max-width: 1100px) {
+        .quest-content {
+            display: grid;
+            grid-template-columns: repeat(2, auto);
+            grid-template-rows: repeat(5, auto);
+            grid-row-gap: 0.6em;
+            grid-column-gap: 0.6em;
+        }
+    }
+
+    @media (min-width: 1101px) {
+        .quest-content {
+            display: grid;
+            grid-template-columns: repeat(5, auto);
+            grid-template-rows: repeat(2, auto);
+            grid-row-gap: 0.6em;
+            grid-column-gap: 0.6em;
+        }
     }
 </style>

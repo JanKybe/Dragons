@@ -24,6 +24,10 @@
         outline: 0;
     }
 
+    .card {
+        margin-bottom: 1em;
+    }
+
     a, a:hover {
         text-decoration: none;
         color: #2b2b2b;

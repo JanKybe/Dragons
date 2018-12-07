@@ -1,8 +1,8 @@
 <template>
     <div class="sidebar-content">
-        <NewGame/>
-        <Stats/>
-        <Reputation/>
+        <new-game/>
+        <stats/>
+        <reputation/>
     </div>
 </template>
 

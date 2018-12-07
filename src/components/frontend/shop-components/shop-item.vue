@@ -19,7 +19,7 @@
                 {{ message }}
             </div>
 
-            <div class="btn-buy" v-on:click="buyItem({id: id, cost: cost})">Buy Item</div>
+            <div class="btn-buy" @click="buyItem({id: id, cost: cost})">Buy Item</div>
 
         </b-card>
     </div>

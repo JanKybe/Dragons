@@ -1,7 +1,7 @@
 <template>
     <div class="b-game-turn-data animated fadeIn" v-if="b_turnData.type === 'quest'">
         <div class="turn-card">
-            <b-card v-bind:header="b_turnData.questData.probability">
+            <b-card :header="b_turnData.questData.probability">
             <p class="card-text">
                 {{ b_turnData.questData.message }}
             </p>
@@ -27,7 +27,7 @@
 
     <div class="b-game-turn-data animated fadeIn" v-else>
         <div class="turn-card">
-            <b-card v-bind:header="b_turnData.item">
+            <b-card :header="b_turnData.item">
             <p class="card-text">
                 Server decided to buy item, because quest success rate is higher when you buy items or healing potion.
             </p>
@@ -68,29 +68,44 @@
 </script>
 
 <style scoped>
-    .b-game-turn-data {
-        display: flex;
-        margin-top: 1em;
+
+    @media (max-width: 767px) {
+        .b-game-turn-data {
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: auto auto;
+            grid-row-gap: 0.6em;
+            margin-top: 1em;
+        }
+    }
+
+     @media screen and (min-width: 768px ) and (max-width: 1100px) {
+        .b-game-turn-data {
+            display: grid;
+            grid-template-columns: 30% 69.4%;
+            grid-column-gap: 0.6em;
+            margin-top: 1em;
+        }
+
+    }
+
+    @media (min-width: 1101px) {
+        .b-game-turn-data {
+            display: grid;
+            grid-template-columns: 30% 69.4%;
+            grid-column-gap: 0.6em;
+            margin-top: 1em;
+        }
     }
 
     .card {
         height: 15em;
     }
 
-    .turn-card {
-        width: 30%;
-        margin-right: 1em;
-    }
-
-    .turn-success {
-        width: 70%;
-    }
-
     .card-header {
         background-color: #2b2b2b;
         color: white;
         text-transform: uppercase;
-        background-position: 13% 37%;
         font-weight: 700;
     }
 

@@ -1,24 +1,24 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from dragons.models import playerData
+from dragons.models import PlayerData
 import requests
 
-from .game.gameCore import gameCore
+from .game.gameCore import GameCore
 
 
 def startTurn(request, gameid):
 
     if request.method == 'GET':
 
-        if playerData.objects.filter(gameid=gameid).count() < 1:
+        if PlayerData.objects.filter(gameid=gameid).count() < 1:
             return JsonResponse({
                 "Error": "Game doesn't exist."
             })
 
-        game = gameCore(gameid)
+        game = GameCore(gameid)
         data = game.startTurn()
 
-        player = playerData.objects.get(gameid=gameid)
+        player = PlayerData.objects.get(gameid=gameid)
 
         repData = requests.post("https://www.dragonsofmugloar.com/api/v2/" + player.gameid +"/investigate/reputation")
         repData = repData.json()
@@ -57,7 +57,7 @@ def startGame(request):
         data = requests.post("https://www.dragonsofmugloar.com/api/v2/game/start")
         data = data.json()
 
-        startGame = playerData(
+        startGame = PlayerData(
             gameid = data['gameId'],
             lives = data['lives'],
             gold = data['gold'],

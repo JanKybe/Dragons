@@ -48,17 +48,53 @@
 
 <style scoped>
 
-    .backend {
-        display: grid;
-        grid-template-columns: auto;
-        grid-template-rows: 80px auto;
+    @media (max-width: 767px) {
+        .backend {
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: 80px auto;
 
-        width: 100%;
-        height: 100%;
+            width: 100%;
+            height: 100%;
+        }
+
+        .backend-content {
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: auto auto;
+        }
     }
 
-    .backend-content {
-        display: grid;
-        grid-template-columns: 17% 83%;
+     @media screen and (min-width: 768px ) and (max-width: 1100px) {
+        .backend {
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: 80px auto;
+
+            width: 100%;
+            height: 100%;
+        }
+
+        .backend-content {
+            display: grid;
+            grid-template-columns: 30% 70%;
+        }
+
+    }
+
+    @media (min-width: 1101px) {
+        .backend {
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: 80px auto;
+
+            width: 100%;
+            height: 100%;
+        }
+
+        .backend-content {
+            display: grid;
+            grid-template-columns: 17% 83%;
+        }
     }
 </style>

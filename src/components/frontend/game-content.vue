@@ -1,18 +1,17 @@
 <template>
     <div class="game-content" v-if="currentGame">
-
         <div v-if="playerData.lives > 0">
-            <Quests/>
-            <Shop/>
+            <quests/>
+            <shop/>
         </div>
 
-        <div v-else>
-            <gOver/>
+        <div v-else-if="gameOver">
+            <g-over/>
         </div>
     </div>
 
     <div class="game-content" v-else>
-        <bContent/>
+        <b-content/>
     </div>
 </template>
 
@@ -40,7 +39,8 @@
             ...mapGetters({
                 currentPage: 'currentPage',
                 currentGame: 'currentGame',
-                playerData: 'playerData'
+                playerData: 'playerData',
+                gameOver: 'gameOver'
             })
         }
 

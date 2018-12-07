@@ -41,7 +41,7 @@ export default {
 
         async b_startGame({ commit }){
 
-            const data = await window.fetch("http://46.101.191.134:8070/start_game", {
+            const data = await window.fetch("http://localhost:8070/start_game", {
                 method: "POST",
                 header: {
                     'Accept': 'application/json',
@@ -58,7 +58,7 @@ export default {
 
         async b_startTurn({ commit, state }){
 
-            const data = await window.fetch("http://46.101.191.134:8070/start_turn/" + state.b_playerData.gameId, {
+            const data = await window.fetch("http://localhost:8070/start_turn/" + state.b_playerData.gameId, {
                 method: "GET",
                 header: {
                     'Accept': 'application/json',
@@ -75,32 +75,31 @@ export default {
             commit('b_setRepData', data.repData);
 
             let gameData = {};
+            const { win, lost, moneySpent, moneyWon } = state.b_gameData
             
             if ( data.turnData.success ){
 
                 if ( data.turnData.type === 'quest' ){
                     gameData = {
-                        'win': state.b_gameData.win + 1,
-                        'lost': state.b_gameData.lost,
-                        'moneySpent': state.b_gameData.moneySpent,
-                        'moneyWon': state.b_gameData.moneyWon + data.turnData.questData.reward
+                        'win': win + 1,
+                        lost,
+                        moneySpent,
+                        'moneyWon': moneyWon + data.turnData.questData.reward
                     }
                 } else {
                     gameData = {
-                        'win': state.b_gameData.win + 1,
-                        'lost': state.b_gameData.lost,
-                        'moneySpent': state.b_gameData.moneySpent + data.turnData.cost,
-                        'moneyWon': state.b_gameData.moneyWon
+                        'win': win,
+                        lost,
+                        'moneySpent': moneySpent + data.turnData.cost,
+                        moneyWon
                     }
                 }
-            } else {
-                if ( data.turnData.type === 'quest'){
-                    gameData = {
-                        'win': state.b_gameData.win,
-                        'lost': state.b_gameData.lost + 1,
-                        'moneySpent': state.b_gameData.moneySpent,
-                        'moneyWon': state.b_gameData.moneyWon
-                    }
+            } else if ( !data.turnData.success && data.turnData.type === 'quest' ) {
+                gameData = {
+                    'win': win,
+                    'lost': lost + 1,
+                    moneySpent,
+                    moneyWon
                 }
             }
 

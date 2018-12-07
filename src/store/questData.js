@@ -30,17 +30,14 @@ export default {
                     return response.json();
                 })
 
-            for (let quest in data) {
 
-                if (data[quest].hasOwnProperty('encrypted')) {
-                    if (data[quest].encrypted === 1) {
-
-                        data[quest].message = atob(data[quest].message);
-                        data[quest].adId = atob(data[quest].adId);
-                        data[quest].probability = atob(data[quest].probability);
-                    }
+            data.forEach((quest) => {
+                if ( quest.hasOwnProperty('encrytped') && quest.encrypted === 1){
+                    data.message = atob(data[quest].message);
+                    data.adId = atob(data[quest].adId);
+                    data.probability = atob(data[quest].probability);
                 }
-            }
+            }) 
 
             commit('setQuestData', data);
         },
@@ -66,21 +63,22 @@ export default {
                 commit('setPlayerAction', data.message);
 
                 let playerH = {}
+                const { quest_won, quest_lost, gold_spent, gold_won } = rootGetters.playerHistory
 
                 if ( data.success ){
                     playerH = {
-                        gold_won: rootGetters.playerHistory.gold_won + q_data.reward,
-                        gold_spent: rootGetters.playerHistory.gold_spent,
-                        quest_won: rootGetters.playerHistory.quest_won + 1,
-                        quest_lost: rootGetters.playerHistory.quest_lost,
+                        'gold_won': gold_won + q_data.reward,
+                        gold_spent,
+                        'quest_won': quest_won + 1,
+                        quest_lost
                     }
                 } else {
                     playerH = {
-                        gold_won: rootGetters.playerHistory.gold_won,
-                        gold_spent: rootGetters.playerHistory.gold_spent,
-                        quest_won: rootGetters.playerHistory.quest_won,
-                        quest_lost: rootGetters.playerHistory.quest_lost + 1,
-                    }
+                        gold_won,
+                        gold_spent,
+                        quest_won,
+                        'quest_lost': quest_lost + 1
+                    } 
                 }
 
                 commit('setPlayerHistory', playerH)  

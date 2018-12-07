@@ -1,22 +1,16 @@
 export default {
 
     state: {
-        shopData: {},
-        healingPotion: {}
+        shopData: {}
     },
 
     getters: {
-        shopData: state => state.shopData,
-        healingPotion: state => state.healingPotion
+        shopData: state => state.shopData
     },
 
     mutations: {
         setShopData (state, payload){
             state.shopData = payload;
-        },
-
-        setHealingPotion (state, payload){
-            state.healingPotion = payload;
         }
 
     },
@@ -36,65 +30,63 @@ export default {
                 .then(response => {
                     return response.json();
                 })
-
-            commit('setHealingPotion', data[0]);
-            data.splice(0, 1);    
-
-            for ( let item in data ) {
-
-                switch(data[item].id){
-
+                
+            data.splice(0, 1); 
+            
+            data.forEach((item) => {
+                switch(item.id){
                     case "gas":
 
-                        data[item].message = "Wanna make campfire or burn enemies?"
+                        item.message = "Wanna make campfire or burn enemies?"
                         break;
 
                     case "rf":
 
-                        data[item].message = "Wanna make even bigger campfire or burn enemies even more?"
+                        item.message = "Wanna make even bigger campfire or burn enemies even more?"
                         break;
 
                     case "wax":
 
-                        data[item].message = "This plating protects your organs little bit more than just a shirt"
+                        item.message = "This plating protects your organs little bit more than just a shirt"
                         break;
 
                     case "tricks":
 
-                        data[item].message = "This book contains some tricks, made by Mugloar witch!"
+                        item.message = "This book contains some tricks, made by Mugloar witch!"
                         break;
 
 
                     case "wingpot":
 
-                        data[item].message = "Wanna fly but dont wanna use LSD? Potion of Stronger Wings is for you."
+                        item.message = "Wanna fly but dont wanna use LSD? Potion of Stronger Wings is for you."
                         break;
 
                     case "ch":
 
-                        data[item].message = "Even shopkeeper Rudolf is not sure what this item does."
+                        item.message = "Even shopkeeper Rudolf is not sure what this item does."
                         break;
 
                     case "iron":
-                        data[item].message = "This plating protects your organs and will even protect you against your wife."
+                        item.message = "This plating protects your organs and will even protect you against your wife."
                         break;
 
                     case "mtrix":
-                        data[item].message = "This book has every trick Mugloar has to offer."
+                        item.message = "This book has every trick Mugloar has to offer."
                         break;
 
                     case "cs":
 
-                        data[item].message = "Sharpens your claws a little bit so you can slash through your enemies like butter."
+                        item.message = "Sharpens your claws a little bit so you can slash through your enemies like butter."
                         break;
 
                     case "wingpotmax":
 
-                        data[item].message = "With this potion you can fly like a hawk."
+                        item.message = "With this potion you can fly like a hawk."
                         break;
-                }
 
-            }
+                }
+            })
+
             commit('setShopData', data);
         },
 
@@ -115,16 +107,13 @@ export default {
 
             commit('updatePlayerData', data);
 
-            let playerH = {}
-
             if ( data.shoppingSuccess ){
-    
-                let playerH = {
-                    gold_won: rootGetters.playerHistory.gold_won,
-                    gold_spent: rootGetters.playerHistory.gold_spent + i_data.cost,
-                    quest_won: rootGetters.playerHistory.quest_won,
-                    quest_lost: rootGetters.playerHistory.quest_lost,
-                }
+
+                let { gold_won, gold_spent, quest_won, quest_lost } = rootGetters.playerHistory
+
+                gold_spent + i_data.cost
+
+                const playerH = Object.assign({}, { gold_won, gold_spent, quest_won, quest_lost})
 
                 commit('setPlayerHistory', playerH)
                 commit('setPlayerAction', 'Successfully bought item!') 

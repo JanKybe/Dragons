@@ -1,13 +1,13 @@
 <template>
     <div class='b-game-content'>
-        <bWelcome/>
+        <b-welcome/>
 
         <div v-if="b_playerData.turn > 0 && b_playerData.lives > 0">
-            <bTurn/>    
+            <b-turn/>    
         </div>
 
         <div v-else-if="b_playerData.lives === 0">
-            <bGameOver/>
+            <b-game-over/>
         </div>
     </div>
 </template>
@@ -25,15 +25,15 @@ export default {
     name: 'b-game-content',
 
     components: {
-            bWelcome,
-            bTurn,
-            bGameOver
+        bWelcome,
+        bTurn,
+        bGameOver
     },
 
     computed: {
-            ...mapGetters({
-                b_playerData: 'b_playerData'
-            })
-        }
+        ...mapGetters({
+            b_playerData: 'b_playerData'
+        })
+    }
 }
 </script>

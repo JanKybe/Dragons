@@ -5,12 +5,14 @@ export default {
         gameData: {
             currentGame: true, // true = frontend, false = backend
             currentPage: true, // true = quest, false = shop
+            gameOver: false
         }
     },
 
     getters: {
         currentPage: state => state.gameData.currentPage,
-        currentGame: state => state.gameData.currentGame
+        currentGame: state => state.gameData.currentGame,
+        gameOver: state => state.gameData.gameOver,
     },
 
     mutations: {
@@ -20,6 +22,10 @@ export default {
 
         setCurrentGame(state, payload){
             state.gameData.currentGame = payload;
+        },
+
+        setGameOver(state, payload){
+            state.gameData.gameOver = payload;
         }
     },
 
@@ -44,6 +50,8 @@ export default {
                 dispatch('getQuests');
                 dispatch('getRepData');
                 dispatch('getShopData');
+            } else {
+                commit('setGameOver', true);
             }
         },
 

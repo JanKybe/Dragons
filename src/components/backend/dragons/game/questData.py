@@ -1,8 +1,8 @@
 import requests
 
-from dragons.models import playerData
+from dragons.models import PlayerData
 
-class questData:
+class QuestData:
 
     def __init__(self):
 
@@ -34,7 +34,7 @@ class questData:
         data = requests.post("https://www.dragonsofmugloar.com/api/v2/" + gameid + "/solve/" + questdata['adId'])
         data = data.json()
 
-        player = playerData.objects.get(gameid=gameid)
+        player = PlayerData.objects.get(gameid=gameid)
 
         player.lives = data['lives']
         player.gold = data['gold']

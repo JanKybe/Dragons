@@ -4,15 +4,15 @@
             <b-card no-body class="quest-card text-center">
 
                 <QuestStats
-                        v-bind:probability="questData.probability"
-                        v-bind:reward="questData.reward">
+                        :probability="questData.probability"
+                        :reward="questData.reward">
 
                 </QuestStats>
 
                 <div class="quest-message">
                     {{ questData.message }}
                 </div>
-                <div class="quest-start" v-on:click="startQuest({adId: questData.adId, reward: questData.reward})">
+                <div class="quest-start" @click="startQuest({adId: questData.adId, reward: questData.reward})">
                     Start Quest >
                 </div>
 

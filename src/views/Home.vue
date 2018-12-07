@@ -36,10 +36,28 @@ export default {
     padding-bottom: 60px;
   }
 
-  .home-content {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-column-gap: 25px;
+  @media (max-width: 767px) {
+    .home-content {
+      display: grid;
+      grid-template-columns: auto;
+      justify-items: center;
+    }
+  }
+
+  @media screen and (min-width: 768px ) and (max-width: 1100px) {
+    .home-content {
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-column-gap: 25px;
+    }
+  }
+
+  @media (min-width: 1101px) {
+    .home-content {
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-column-gap: 25px;
+    }
   }
 
 </style>

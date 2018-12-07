@@ -34,10 +34,20 @@
 
 <style scoped>
 
-    .stats {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    @media screen and (min-width: 768px ) and (max-width: 1100px) {
+        .stats {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    @media (min-width: 1101px) {
+        .stats {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     }
 
     .badge {

@@ -2,17 +2,17 @@
     <div class="sidebar-buttons" v-if="currentGame">
         <div class="row">
             <div class="col">
-                <button v-on:click="startGame()" class="sidebar-btn">New Game</button>
+                <button @click="startGame()" class="sidebar-btn">New Game</button>
             </div>
 
             <div class="col" v-if="playerData.lives > 0">
 
                 <div v-if="currentPage">
-                    <button v-on:click="changePage()" class="sidebar-btn">Shop</button>
+                    <button @click="changePage()" class="sidebar-btn">Shop</button>
                 </div>
 
                 <div v-if="!currentPage">
-                    <button v-on:click="changePage()" class="sidebar-btn">Quests</button>
+                    <button @click="changePage()" class="sidebar-btn">Quests</button>
                 </div>
             </div>
         </div>
@@ -21,11 +21,11 @@
     <div class="sidebar-buttons" v-else>
         <div class="row">
             <div class="col">
-                <button v-on:click="b_startGame()" class="sidebar-btn">New Game</button>
+                <button @click="b_startGame()" class="sidebar-btn">New Game</button>
             </div>
 
             <div class="col" v-if="b_playerData.lives > 0">
-                <button v-on:click="b_startTurn()" class="sidebar-btn">Start Turn</button>
+                <button @click="b_startTurn()" class="sidebar-btn">Start Turn</button>
             </div>
         </div>
     </div>
@@ -49,9 +49,9 @@
         },
 
         methods: {
-            ...mapMutations([
-                'setCurrentPage'
-            ]),
+            ...mapMutations({
+                setCurrentPage: 'setCurrentPage'
+            }),
 
             ...mapActions({
                 startGame: 'startGame',

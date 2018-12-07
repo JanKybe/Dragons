@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class playerData(models.Model):
+class PlayerData(models.Model):
 
     gameid = models.CharField(max_length=8)
     lives = models.IntegerField(default=0)

@@ -1,7 +1,7 @@
 import requests
-from dragons.models import playerData
+from dragons.models import PlayerData
 
-class shopData:
+class ShopData:
 
     def __init__(self):
 
@@ -34,7 +34,7 @@ class shopData:
         data = requests.post("https://www.dragonsofmugloar.com/api/v2/" + gameid + "/shop/buy/" + item['id'])
         data = data.json()
 
-        player = playerData.objects.get(gameid=gameid)
+        player = PlayerData.objects.get(gameid=gameid)
 
         player.lives = data['lives']
         player.gold = data['gold']
