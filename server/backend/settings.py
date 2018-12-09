@@ -25,23 +25,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'secret_key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-SECURE_SSL_REDIRECT = True
 
 # Application definition
 
 INSTALLED_APPS = [
     'dragons',
-    'djangosecure',
-    'sslserver',
 ]
 
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.middleware.common.CommonMiddleware',
-]
 ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [
