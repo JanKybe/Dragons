@@ -60,13 +60,8 @@ export default {
             await dispatch('getItem', itemId, cost);
             
             dispatch('getShopData');
+            dispatch('getQuests');
 
-        },
-
-        async startTurn({ dispatch }){
-
-            dispatch('getQuestData');
-            dispatch('getShopData');
         }
     }
 }

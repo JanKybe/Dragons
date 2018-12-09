@@ -41,7 +41,7 @@ export default {
 
         async b_startGame({ commit }){
 
-            const data = await window.fetch("https://46.101.191.134:8070/start_game", {
+            const data = await window.fetch("https://localhost:8070/start_game", {
                 method: "POST",
                 header: {
                     'Accept': 'application/json',
@@ -58,7 +58,7 @@ export default {
 
         async b_startTurn({ commit, state }){
 
-            const data = await window.fetch("https://46.101.191.134:8070/start_turn/" + state.b_playerData.gameId, {
+            const data = await window.fetch("https://localhost:8070/start_turn/" + state.b_playerData.gameId, {
                 method: "GET",
                 header: {
                     'Accept': 'application/json',

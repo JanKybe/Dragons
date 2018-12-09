@@ -26,13 +26,13 @@ apt-get install python3
 ```
 apt-get install python3-pip
 ```
-### Installing Virtualenv
+### Installing virtual environment
 ```
 pip3 install virtualenv
 ```
 ### Create virtual environment
 ```
-cd src/components/backend
+cd server
 virtualenv env
 ```
 
@@ -41,13 +41,12 @@ virtualenv env
 source env/bin/activate
 ```
 
-### Install Django
+### Install requirements
 ```
-pip3 install django
-pip3 install requests
+pip3 install -r requirements.txt
 ```
 
 ### Start Django
 ```
-python3 manage.py runserver localhost:8070
+python3 manage.py runsslserver localhost:8070
 ```

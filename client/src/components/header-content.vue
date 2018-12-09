@@ -33,7 +33,7 @@
             background-color: #2b2b2b;
             color: white;
             align-items: center;
-            font-size: 1.5em;
+            font-size: 1em;
             text-transform: uppercase;
         }
 

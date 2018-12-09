@@ -67,7 +67,6 @@
         computed: {
             ...mapGetters({
                 playerData: 'playerData',
-                healingPotion: 'healingPotion',
                 currentGame: 'currentGame',
                 b_playerData: 'b_playerData'
             })
