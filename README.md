@@ -1,7 +1,7 @@
 # Dragons of Mugloar
 
 ## Demo version
-https://jankybe.github.io/#/
+http://46.101.191.134/#/
 
 ## Vue setup
 ```
