@@ -1,5 +1,8 @@
 # Dragons of Mugloar
 
+## Demo version
+[a link](https://jankybe.github.io/#/)
+
 ## Vue setup
 ```
 npm install
