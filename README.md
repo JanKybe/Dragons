@@ -51,5 +51,5 @@ pip3 install -r requirements.txt
 
 ### Start Django
 ```
-python3 manage.py runsslserver localhost:8070
+python3 manage.py runserver localhost:8070
 ```
